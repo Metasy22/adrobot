@@ -1,0 +1,15 @@
+# secrets
+.env
+
+# task spec & vendor docs (local only)
+adrobot-task/
+keitaro_admin_api_v1.yaml
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.db
+.pytest_cache/
+.DS_Store

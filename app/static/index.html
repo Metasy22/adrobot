@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adrobot — Keitaro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Adrobot <span>· Keitaro</span></h1>
+  <nav>
+    <button class="tab active" data-tab="create">Создать кампанию</button>
+    <button class="tab" data-tab="edit">Редактор кампании</button>
+  </nav>
+</header>
+
+<main>
+  <!-- ===== Creator ===== -->
+  <section id="tab-create" class="panel">
+    <form id="create-form" class="card">
+      <h2>Новая кампания</h2>
+      <label>Название кампании
+        <input name="name" required maxlength="255" placeholder="my_campaign">
+      </label>
+      <div class="row">
+        <label>Гео (код страны)
+          <input name="country" required maxlength="2" minlength="2" pattern="[A-Za-z]{2}" placeholder="DE" class="upper">
+        </label>
+        <label class="grow">Оффер
+          <input name="offer" required list="offers-list" placeholder="ID или название оффера" autocomplete="off">
+        </label>
+      </div>
+      <div class="row">
+        <label>Домен <select name="domain_id" data-ref="domains"></select></label>
+        <label>Группа <select name="group_id" data-ref="groups"></select></label>
+        <label>Источник <select name="traffic_source_id" data-ref="traffic_sources"></select></label>
+      </div>
+      <p class="hint">Поток 1: трафик из страны → <code id="geo-url">google</code>. Поток 2: выбранный оффер.</p>
+      <button type="submit" class="primary">Создать</button>
+    </form>
+    <div id="create-result"></div>
+  </section>
+
+  <!-- ===== Editor ===== -->
+  <section id="tab-edit" class="panel hidden">
+    <div class="card picker">
+      <label class="grow">Кампания
+        <input id="campaign-input" list="campaigns-list" placeholder="ID или название" autocomplete="off">
+      </label>
+      <label class="check"><input type="checkbox" id="only-group" checked> только группа по умолчанию</label>
+      <label class="check"><input type="checkbox" id="only-mine"> только созданные здесь</label>
+      <button id="campaign-open" class="primary">Открыть</button>
+    </div>
+    <div id="campaign-view"></div>
+  </section>
+</main>
+
+<datalist id="offers-list"></datalist>
+<datalist id="campaigns-list"></datalist>
+<div id="toast" class="toast hidden"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
